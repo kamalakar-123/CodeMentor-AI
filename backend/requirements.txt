@@ -3,3 +3,12 @@ fastapi
 
 # Uvicorn runs the FastAPI app as an ASGI server during development.
 uvicorn[standard]
+
+# SQLAlchemy provides the ORM and database metadata layer.
+SQLAlchemy
+
+# psycopg2-binary is the PostgreSQL driver used by SQLAlchemy.
+psycopg2-binary
+
+# python-dotenv loads the DATABASE_URL value from the .env file.
+python-dotenv

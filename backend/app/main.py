@@ -1,14 +1,26 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+import app.models
+from app.database import Base, engine
 from app.api.home import router as home_router
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Create tables during startup so PostgreSQL is ready before requests arrive.
+    Base.metadata.create_all(bind=engine)
+    yield
 
 
 # Create the FastAPI application object that starts the server.
 app = FastAPI(
     title="CodeMentor AI API",
-    version="0.2.0",
+    version="0.3.0",
     description="Backend API for CodeMentor AI, an AI-powered coding interview preparation platform.",
+    lifespan=lifespan,
 )
 
 

@@ -1,41 +1,44 @@
-# CodeMentor AI Backend - Day 2
+# CodeMentor AI Backend - Day 3
 
-This backend is organized as a small FastAPI application package.
+This backend now connects FastAPI to PostgreSQL through SQLAlchemy while keeping the existing API routes intact.
 
 ## Folder Purpose
 
-- `app/`: the Python package that contains the FastAPI application code.
-- `app/api/`: route modules live here so HTTP endpoints stay separated by feature.
-- `app/core/`: shared application configuration belongs here.
-- `app/models/`: database models will go here later. It stays empty for Day 2.
-- `app/schemas/`: request and response schemas will go here later. It stays empty for Day 2.
-- `app/services/`: business logic and orchestration helpers belong here.
-- `app/utils/`: reusable utility functions and helpers belong here.
+- `app/`: the main Python package for the backend.
+- `app/api/`: HTTP routes live here, grouped by feature.
+- `app/core/`: reserved for shared core settings later.
+- `app/models/`: SQLAlchemy models that map Python classes to PostgreSQL tables.
+- `app/schemas/`: reserved for request and response schemas later.
+- `app/services/`: reserved for business logic later.
+- `app/utils/`: reserved for reusable helper functions later.
 
-## FastAPI Architecture
+## FastAPI And PostgreSQL Flow
 
-FastAPI applications usually work best when they are split into layers:
+FastAPI handles web requests, and SQLAlchemy handles database communication.
 
-- the application entrypoint configures the server,
-- routers define HTTP endpoints,
-- schemas define data contracts,
-- services hold business logic,
-- models represent persistence later,
-- utilities hold reusable helpers.
-
-This keeps code easier to read, test, and extend.
+At startup, `app/main.py` imports the model package so SQLAlchemy knows about the table metadata, then `Base.metadata.create_all(bind=engine)` creates any missing tables in PostgreSQL.
 
 ## APIRouter
 
-`APIRouter` is FastAPI's router object for grouping related endpoints.
+`APIRouter` groups related routes together so `app/main.py` stays small and focused on application setup.
 
-We use it so the home routes live in `app/api/home.py` instead of being mixed into the app startup file.
-
-## Run the backend
+## Run The Backend
 
 ```powershell
 cd backend
 ..\\.venv\\Scripts\\python.exe -m uvicorn app.main:app --reload
+```
+
+## Verify PostgreSQL
+
+1. Open pgAdmin.
+2. Connect to your local PostgreSQL server.
+3. Expand `Databases` > `codementor_ai` > `Schemas` > `public` > `Tables`.
+4. Confirm the `users` table exists.
+5. Open the Query Tool and run:
+
+```sql
+SELECT * FROM users;
 ```
 
 ## Expected Endpoints
@@ -45,6 +48,9 @@ cd backend
 
 ## Common Errors
 
+- `DATABASE_URL is not set`: check the backend `.env` file.
+- `password authentication failed`: replace `YOUR_PASSWORD` with the real PostgreSQL password.
+- `could not connect to server`: confirm PostgreSQL is running on port `5432`.
 - `ModuleNotFoundError`: activate the virtual environment before running Uvicorn.
 - `Address already in use`: stop anything already using port `8000`.
 - `CORS error`: confirm the frontend runs from `http://localhost:5173`.
