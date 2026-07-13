@@ -24,8 +24,8 @@ function App() {
         setLoading(true)
         setError('')
 
-        // Call the FastAPI root endpoint.
-        const response = await fetch(`${API_BASE_URL}/`)
+        // Call the FastAPI router root endpoint.
+        const response = await fetch(`${API_BASE_URL}/api/`)
 
         // Stop early if the server returned an error response.
         if (!response.ok) {
