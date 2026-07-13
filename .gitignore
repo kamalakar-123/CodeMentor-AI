@@ -1,0 +1,22 @@
+# Python cache files.
+__pycache__/
+
+# Python bytecode.
+*.pyc
+
+# Python virtual environments.
+.venv/
+venv/
+
+# Environment files.
+.env
+.env.local
+
+# Node.js dependencies and build output.
+node_modules/
+dist/
+
+# Editor and OS files.
+.vscode/
+.DS_Store
+Thumbs.db
