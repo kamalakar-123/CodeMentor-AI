@@ -10,6 +10,9 @@ def create_user(db: Session, user_data: UserCreate) -> User:
     user = User(
         full_name=user_data.full_name,
         email=user_data.email,
+        hashed_password="",
+        role="student",
+        is_active=True,
     )
     db.add(user)
     db.commit()

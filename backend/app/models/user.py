@@ -17,3 +17,12 @@ class User(Base):
 
     # Email stored as variable-length text, required, unique, and indexed for fast lookup.
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True, index=True)
+
+    # Bcrypt-hashed password used for authentication.
+    hashed_password: Mapped[str] = mapped_column(String(255), nullable=False, default="")
+
+    # Basic user role flag for future feature expansion.
+    role: Mapped[str] = mapped_column(String(50), nullable=False, default="student")
+
+    # Whether the account is currently active.
+    is_active: Mapped[bool] = mapped_column(nullable=False, default=True)

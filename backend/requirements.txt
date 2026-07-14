@@ -12,3 +12,12 @@ psycopg2-binary
 
 # python-dotenv loads the DATABASE_URL value from the .env file.
 python-dotenv
+
+# passlib provides bcrypt password hashing utilities.
+passlib[bcrypt]
+
+# python-jose handles JWT token creation and validation.
+python-jose[cryptography]
+
+# python-multipart is required for form-data parsing in OAuth2 login.
+python-multipart

@@ -7,6 +7,7 @@ import app.models
 from app.database import Base, engine
 from app.api.home import router as home_router
 from app.routers.user_router import router as user_router
+from app.routers.auth_router import router as auth_router
 
 
 @asynccontextmanager
@@ -44,3 +45,7 @@ app.include_router(home_router)
 
 # Register user management routes.
 app.include_router(user_router)
+
+
+# Register authentication routes.
+app.include_router(auth_router)
