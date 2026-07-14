@@ -25,3 +25,12 @@ SessionLocal = sessionmaker(
 
 # Create the shared base class that all SQLAlchemy models inherit from.
 Base = declarative_base()
+
+
+def get_db():
+    # Provide a request-scoped database session via FastAPI dependency injection.
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

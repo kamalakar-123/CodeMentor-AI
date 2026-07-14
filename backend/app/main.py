@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import app.models
 from app.database import Base, engine
 from app.api.home import router as home_router
+from app.routers.user_router import router as user_router
 
 
 @asynccontextmanager
@@ -39,3 +40,7 @@ app.add_middleware(
 
 # Register the route collection that lives in app/api/home.py.
 app.include_router(home_router)
+
+
+# Register user management routes.
+app.include_router(user_router)
