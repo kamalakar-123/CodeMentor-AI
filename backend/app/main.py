@@ -11,6 +11,7 @@ from app.routers.auth_router import router as auth_router
 from app.routers.question_router import router as question_router
 from app.routers.ai_router import router as ai_router
 from app.routers.submission import router as submission_router
+from app.routers.test_case import router as test_case_router
 
 
 @asynccontextmanager
@@ -46,3 +47,4 @@ app.include_router(auth_router)
 app.include_router(question_router)
 app.include_router(ai_router)
 app.include_router(submission_router)
+app.include_router(test_case_router)
