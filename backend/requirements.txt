@@ -21,3 +21,6 @@ python-jose[cryptography]
 
 # python-multipart is required for form-data parsing in OAuth2 login.
 python-multipart
+
+# Official Google Gen AI SDK for Gemini API integration.
+google-genai
